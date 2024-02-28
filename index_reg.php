@@ -74,11 +74,6 @@ if (!validateLetters($middle_name)) {
     exit();
 }
 
-//To validate status
-if (!validateLetters($Status)) {
-    header("Location: reg_form.php?error=Status should contain only letters");
-    exit();
-}
 
 //To insert user data into the database
 $sql = "INSERT INTO user (username, password, Lastname, First_name, Middle_name, Email, Status, Active) VALUES ('$username','$password','$last_name','$first_name','$middle_name','$Email','$Status','$Active')";

@@ -77,13 +77,15 @@
             </div>
           </div>
         </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Status" name="Status" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
+        <div class="col-md-12 m-2">
+            <label for="status" class="form-label">Status <span class="text-danger"></span></label>
+            <select class="form-select" id="status" name="Status" required>
+                <option value="Single">Single</option>
+                <option value="In relationship">In relationship</option>
+                <option value="Married">Married</option>
+                <option value="Divorced">Divorced</option>
+                <option value="Widowed">Widowed</option>
+            </select>
         </div>
         <div class="row">
           <!-- /.col -->
