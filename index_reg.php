@@ -2,6 +2,7 @@
 //To connect with the database connection file
 include "db_conn.php";
 
+
 //To retrieve the user input from the form
 $user_id = $_POST['user_id'];
 $username = $_POST['username'];
@@ -12,6 +13,11 @@ $middle_name = $_POST['Middle_name'];
 $Email = $_POST['Email'];
 $Status = $_POST['Status'];
 $Active = isset($_POST['Active']) ? "Online" : "Offline";
+
+
+function validateLetters($input) {
+    return preg_match('/^[A-Za-z]+$/', $input);
+}
 
 //A function to validate email format
 function validateEmail($email) {
@@ -35,6 +41,30 @@ $email_exists = mysqli_fetch_assoc($result);
 //Sending back to registration form if email already exists
 if ($email_exists) {
     header("Location: reg_form.php?error=Email already in use");
+    exit();
+}
+
+// Validate last name
+if (!validateLetters($last_name)) {
+    header("Location: reg_form.php?error=Last name should contain only letters");
+    exit();
+}
+
+// Validate first name
+if (!validateLetters($first_name)) {
+    header("Location: reg_form.php?error=First name should contain only letters");
+    exit();
+}
+
+// Validate middle name
+if (!validateLetters($middle_name)) {
+    header("Location: reg_form.php?error=Middle name should contain only letters");
+    exit();
+}
+
+// Validate status
+if (!validateLetters($Status)) {
+    header("Location: reg_form.php?error=Status should contain only letters");
     exit();
 }
 

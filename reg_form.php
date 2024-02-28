@@ -41,17 +41,17 @@
                         <!--For last name input-->
                         <div class="col-md-12 m-2">
                             <label for="last-name" class="form-label">Last Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" placeholder="Last Name" id="last-name" name="Last_name" pattern="[A-Za-z]+" title="Last name should contain only letters" required>
+                            <input type="text" class="form-control" placeholder="Last Name" id="last-name" name="Last_name" required>
                         </div>
                         <!--For first name input-->
                         <div class="col-md-12 m-2">
                             <label for="first-name" class="form-label">First Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" placeholder="First Name" id="first-name" name="First_name" pattern="[A-Za-z]+" title="First name should contain only letters" required>
+                            <input type="text" class="form-control" placeholder="First Name" id="first-name" name="First_name" required>
                         </div>
                         <!--For middle name input-->
                         <div class="col-md-12 m-2">
                             <label for="middle-name" class="form-label">Middle Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" placeholder="Middle Name" id="middle-name" name="Middle_name" pattern="[A-Za-z]+" title="Middle name should contain only letters" required>
+                            <input type="text" class="form-control" placeholder="Middle Name" id="middle-name" name="Middle_name" required>
                         </div>
                         <!--For email input-->
                         <div class="col-md-12 m-2">
@@ -63,7 +63,7 @@
                         <!--For status input-->
                         <div class="col-md-12 m-2">
                             <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" placeholder="Status" id="status" name="Status" pattern="[A-Za-z]+" title="Status should contain only letters" required>
+                            <input type="text" class="form-control" placeholder="Status" id="status" name="Status" required>
                         </div>
                         <!--To submit the user's input-->
                         <div class="col-md-12 m-2">
