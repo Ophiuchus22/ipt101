@@ -41,23 +41,17 @@
                         <!--For last name input-->
                         <div class="col-md-12 m-2">
                             <label for="last-name" class="form-label">Last Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" placeholder="Last Name" id="last-name" name="Last_name" pattern="^[a-zA-Z\s]*$" required>
-                            <div class="valid-feedback">Last Name validated</div>
-                            <div class="invalid-feedback">Please enter a valid Last Name</div>
+                            <input type="text" class="form-control" placeholder="Last Name" id="last-name" name="Last_name" required>
                         </div>
                         <!--For first name input-->
                         <div class="col-md-12 m-2">
                             <label for="first-name" class="form-label">First Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" placeholder="First Name" id="first-name" name="First_name" pattern="^[a-zA-Z\s]*$" required>
-                            <div class="valid-feedback">First Name validated</div>
-                            <div class="invalid-feedback">Please enter a valid First Name</div>
+                            <input type="text" class="form-control" placeholder="First Name" id="first-name" name="First_name" required>
                         </div>
                         <!--For middle name input-->
                         <div class="col-md-12 m-2">
                             <label for="middle-name" class="form-label">Middle Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" placeholder="Middle Name" id="middle-name" name="Middle_name" pattern="^[a-zA-Z\s]*$" required>
-                            <div class="valid-feedback">Middle Name validated</div>
-                            <div class="invalid-feedback">Please enter a valid Middle Name</div>
+                            <input type="text" class="form-control" placeholder="Middle Name" id="middle-name" name="Middle_name" required>
                         </div>
                         <!--For email input-->
                         <div class="col-md-12 m-2">
