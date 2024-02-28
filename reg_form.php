@@ -1,89 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>REGISTER</title>
-    <!--To link or include CSS Bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-    rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
-    crossorigin="anonymous">
-</head>
-<body>
-<!--Registration form layout using CSS Bootstrap-->
-<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 m-5">
-                    <form class="row shadow-lg p-3" action="index_reg.php" method="post" novalidate>
-                        <div class="m-2">
-                            <h1 class="">Registration Form</h1>
-                        </div>
-                        <!--To display an error message if the email is invalid-->
-                        <?php if (isset($_GET['error'])) { ?>
-                            <div class="alert alert-danger" role="alert">
-                                <?php echo $_GET['error']; ?>
-                            </div>
-                        <?php } ?>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Registration Page (v2)</title>
 
-                        <!--For username input-->
-                        <div class="col-md-12 m-2">
-                            <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" placeholder="Username" id="username" name="username" required>
-                            <div class="valid-feedback">Username validated</div>
-                            <div class="invalid-feedback">Please enter a valid Username</div>
-                        </div>
-                        <!--For password input-->
-                        <div class="col-md-12 m-2">
-                            <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
-                            <input type="password" class="form-control" placeholder="Password" id="password" name="password" required>
-                            <div class="valid-feedback">Password validated</div>
-                            <div class="invalid-feedback">Please enter a valid Password</div>
-                        </div>
-                        <!--For last name input-->
-                        <div class="col-md-12 m-2">
-                            <label for="last-name" class="form-label">Last Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" placeholder="Last Name" id="last-name" name="Last_name" required>
-                        </div>
-                        <!--For first name input-->
-                        <div class="col-md-12 m-2">
-                            <label for="first-name" class="form-label">First Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" placeholder="First Name" id="first-name" name="First_name" required>
-                        </div>
-                        <!--For middle name input-->
-                        <div class="col-md-12 m-2">
-                            <label for="middle-name" class="form-label">Middle Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" placeholder="Middle Name" id="middle-name" name="Middle_name" required>
-                        </div>
-                        <!--For email input-->
-                        <div class="col-md-12 m-2">
-                            <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                            <input type="email" class="form-control" placeholder="Email" id="email" name="Email" required>
-                            <div class="valid-feedback">Email validated</div>
-                            <div class="invalid-feedback">Please enter a valid Email</div>
-                        </div>
-                        <!--For status input-->
-                        <div class="col-md-12 m-2">
-                            <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" placeholder="Status" id="status" name="Status" required>
-                        </div>
-                        <!--To submit the user's input-->
-                        <div class="col-md-12 m-2">
-                            <button id="submitBtn" class="btn btn-primary" type="submit">Submit</button>
-                        </div>
-                        <!--Back to login form-->
-                        <div class="col-md-12 m-2">
-                            <a href="login_form.php">Back to Login</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="adminlte.min.css">
+</head>
+<body class="hold-transition register-page">
+<div class="register-box">
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
     </div>
-    <!--To include the necessary JS files for Bootstrap-->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" 
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" 
-    crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" 
-    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" 
-    crossorigin="anonymous"></script>
+    <div class="card-body">
+      <p class="login-box-msg">Register a new membership</p>
+
+      <form action="index_reg.php" method="post">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Username" name="username" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Password" name="password" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Last Name" name="Last_name" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="First Name" name="First_name" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Middle Name" name="Middle_name" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="Email" name="Email" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Status" name="Status" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+      <a href="login.html" class="text-center">I already have a membership</a>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
+
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
 </body>
 </html>
