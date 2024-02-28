@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Registration Page (v2)</title>
+  <title>Registration Page</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -18,10 +18,15 @@
 <div class="register-box">
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
+        <h1 class="">Registration Form</h1>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Register a new membership</p>
+
+    <?php if (isset($_GET['error'])) { ?>
+        <div class="alert alert-danger" role="alert">
+            <?php echo $_GET['error']; ?>
+        </div>
+    <?php } ?>
 
       <form action="index_reg.php" method="post">
         <div class="input-group mb-3">
@@ -88,7 +93,7 @@
           <!-- /.col -->
         </div>
       </form>
-      <a href="login.html" class="text-center">I already have a membership</a>
+      <a href="login_form.php" class="text-center">I already have an account</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->
