@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Starter</title>
+  <title>Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -188,7 +188,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
             <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-user-alt"></i>
               <p>
                 Profile
                 <i class="right fas fa-angle-left"></i>
@@ -210,8 +210,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="login_form.php" class="nav-link">
+            <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>
                 Sign out
                 <span class="right badge badge-danger"></span>
@@ -243,74 +243,92 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
-    <!-- /.content-header -->
 
     <!-- Main content -->
-    <div class="content">
+    <section class="content">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
+        <?php if (isset($_GET['success'])) { ?>
+            <div class="alert alert-success" role="alert">
+                <?php echo $_GET['success']; ?>
             </div>
+        <?php } ?>
 
-            <div class="card card-primary card-outline">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
 
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div><!-- /.card -->
-          </div>
-          <!-- /.col-md-6 -->
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
+        <div class="row justify-content-center">
+          <!-- left column -->
+          <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <!-- /.card-header -->
+              <!-- form start -->
+                <form action="index_dash.php" method="POST" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="first_name">First Name</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter First Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter Last Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="middle_name">Middle Name</label>
+                            <input type="text" class="form-control" id="middle_name" name="middle_name" placeholder="Enter Middle Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone_number">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="Enter Phone Number">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea class="form-control" id="address" name="address" placeholder="Enter Address"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="date_of_birth">Date of Birth</label>
+                            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth">
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select class="form-control" id="gender" name="gender">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="profile_picture">Profile Picture</label>
+                            <input type="file" class="form-control-file" id="profile_picture" name="profile_picture">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact_info">Contact Info</label>
+                            <input type="text" class="form-control" id="contact_info" name="contact_info" placeholder="Enter Contact Info">
+                        </div>
+                        <div class="form-group">
+                            <label for="bio">Bio</label>
+                            <textarea class="form-control" id="bio" name="bio" placeholder="Enter Bio"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="social_media">Social Media</label>
+                            <input type="text" class="form-control" id="social_media" name="social_media" placeholder="Enter Social Media Links">
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
             </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>
-          <!-- /.col-md-6 -->
+            <!-- /.card -->
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
-    </div>
+    </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
