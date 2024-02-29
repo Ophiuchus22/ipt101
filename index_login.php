@@ -50,7 +50,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                 $_SESSION['id'] = $row['id'];
 
                 // Redirect user to home page
-                header("Location: home.php");
+                header("Location: dashboard.php");
                 exit();
             }
             //To send the user if the credentials are incorrect

@@ -81,7 +81,7 @@ $sql = "INSERT INTO user (username, password, Lastname, First_name, Middle_name,
 //Executing the SQL query
 if(mysqli_query($conn, $sql)){
     //Sending to home page with success message if registration is successful
-    header("Location: home.php?message=Successfully Registered");
+    header("Location: dashboard.php?message=Successfully Registered");
 } else{
     //Displaying error message if there's an issue with the SQL query
     echo "ERROR: Hush! Sorry $sql. " . mysqli_error($conn);
