@@ -1,5 +1,4 @@
 <?php
-
 // Include the database connection file
 include "db_conn.php";
 
@@ -17,45 +16,63 @@ $contact_info = $_POST['contact_info'];
 $bio = $_POST['bio'];
 $social_media = $_POST['social_media'];
 
+
 // Regular expressions for validation
-$phone_regex = '/^\d{12}$/'; // Phone number format: 10 digits
+$phone_regex = '/^\d{11}$/'; // Phone number format: 10 digits
 $email_regex = '/^\S+@\S+\.\S+$/'; // Email format: standard email regex
 $social_media_regex = '/^(https?:\/\/)?(www\.)?(facebook\.com|twitter\.com|instagram\.com|linkedin\.com|youtube\.com|snapchat\.com)\/.+$/i';
 
+$errors = array();
+
+// Function to validate if a password contains at least one letter and one digit or one of the specified symbols
+function validatePassword($password) {
+    return preg_match('/^(?=.*[A-Za-z])(?=.*[\d@#$*])[A-Za-z\d@#$*]+$/', $password);
+}
+
+// Function to validate inputs (should contain letters only)
+function validateLetters($input) {
+    return preg_match('/^[A-Za-z]+$/', $input);
+}
+
+// Function to validate email format
+function validateEmail($email) {
+    return filter_var($email, FILTER_VALIDATE_EMAIL);
+}
+
 // Validate inputs
-if (!preg_match('/^[a-zA-Z]+$/', $first_name)) {
-    header("Location: dashboard.php?error=First name should contain only letters");
-    
+if (!validateLetters($first_name)) {
+    $errors[] = "First name should contain only letters";
 }
 
-if (!preg_match('/^[a-zA-Z]+$/', $last_name)) {
-    header("Location: dashboard.php?error=Last name should contain only letters");
-    
+if (!validateLetters($last_name)) {
+    $errors[] = "Last name should contain only letters";
 }
 
-if (!empty($middle_name) && !preg_match('/^[a-zA-Z]+$/', $middle_name)) {
-    header("Location: dashboard.php?error=Middle name should contain only letters");
-    
+if (!empty($middle_name) && !validateLetters($middle_name)) {
+    $errors[] = "Middle name should contain only letters";
 }
 
-if (!preg_match($email_regex, $email)) {
-    header("Location: dashboard.php?error=Invalid email");
-    
+if (empty($email) || !validateEmail($email)) {
+    $errors[] = "Invalid email";
 }
 
 if (!empty($phone_number) && !preg_match($phone_regex, $phone_number)) {
-    header("Location: dashboard.php?error=Invalid phone number");
-    
+    $errors[] = "Invalid phone number";
 }
 
 if (!empty($contact_info) && !preg_match($phone_regex, $contact_info) && !filter_var($contact_info, FILTER_VALIDATE_EMAIL)) {
-    header("Location: dashboard.php?error=Contact info should be a valid mobile number or email");
-    
+    $errors[] = "Contact info should be a valid mobile number or email";
 }
 
 if (!empty($social_media) && !preg_match($social_media_regex, $social_media)) {
-    header("Location: dashboard.php?error=Invalid social media link");
-    
+    $errors[] = "Invalid social media link";
+}
+
+// Handle errors
+if (!empty($errors)) {
+    $error_message = implode(", ", $errors);
+    header("Location: dashboard.php?error=$error_message");
+    exit();
 }
 
 // Insert user data into the database
@@ -69,8 +86,11 @@ if(mysqli_query($conn, $sql)){
     
 } else {
     // Redirect to an error page if there's an issue with the SQL query
-    header("Location: dashboard.php?message=ERROR!" . mysqli_error($conn));
-    
+    $error_message = mysqli_error($conn); // Get the MySQL error message
+    $error_message = urlencode("Your profile could not be updated: $error_message");
+    header("Location: dashboard.php?error=$error_message");
+    exit();
 }
+
 
 ?>

@@ -15,6 +15,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="css/adminlte.min.css">
+  <style>
+    .alert-success {
+      color: green;
+    }
+  </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -247,13 +252,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <?php if (isset($_GET['success'])) { ?>
-            <div class="alert alert-success" role="alert">
-                <?php echo $_GET['success']; ?>
-            </div>
-        <?php } ?>
-
-
+        <?php
+        // Check for error message
+        if (isset($_GET['error'])) {
+            $error_message = urldecode($_GET['error']);
+            // Display error message
+            echo "<div class='alert alert-danger'>$error_message</div>";
+        }
+        // Check for success message
+        if (isset($_GET['success'])) {
+            $success_message = urldecode($_GET['success']);
+            // Display success message with green color
+            echo "<div class='alert alert-success' style='color: green;'>$success_message</div>";
+        }
+        ?>
         <div class="row justify-content-center">
           <!-- left column -->
           <div class="col-md-6">
@@ -261,7 +273,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="card card-primary">
               <!-- /.card-header -->
               <!-- form start -->
-                <form action="index_dash.php" method="post">
+                <form action="index_dash.php" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="first_name">First Name</label>
@@ -325,6 +337,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.card -->
         </div>
         <!-- /.row -->
+        <div class="row justify-content-center security-login-section" style="display: none;">
+          <div class="col-md-6">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Security and Login</h3>
+              </div>
+              <div class="card-body">
+                <!-- Security and Login Content Goes Here -->
+                <!-- This section is currently empty -->
+              </div>
+            </div>
+          </div>
+        </div>
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
