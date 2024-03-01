@@ -261,7 +261,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="card card-primary">
               <!-- /.card-header -->
               <!-- form start -->
-                <form action="index_dash.php" method="POST" enctype="multipart/form-data">
+                <form action="index_dash.php" method="post">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="first_name">First Name</label>
