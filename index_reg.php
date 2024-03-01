@@ -2,6 +2,17 @@
 //To connect with the database connection file
 include "db_conn.php";
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+// Include PHPMailer autoload file
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
+
+// Create a new PHPMailer instance
+$mail = new PHPMailer(true);
+
 //To retrieve the user input from the form
 $user_id = $_POST['user_id'];
 $username = $_POST['username'];
@@ -76,14 +87,35 @@ if (!validateLetters($middle_name)) {
 
 
 //To insert user data into the database
-$sql = "INSERT INTO user (username, password, Lastname, First_name, Middle_name, Email, Status, Active) VALUES ('$username','$password','$last_name','$first_name','$middle_name','$Email','$Status','$Active')";
+$sql = "INSERT INTO user (username, password, Lastname, First_name, Middle_name, Email, Status, Active, verification_code) VALUES ('$username','$password','$last_name','$first_name','$middle_name','$Email','$Status','$Active', '$verification_code')";
 
-//Executing the SQL query
+// Executing the SQL query
 if(mysqli_query($conn, $sql)){
-    //Sending to home page with success message if registration is successful
-    header("Location: dashboard.php?message=Successfully Registered");
-} else{
-    //Displaying error message if there's an issue with the SQL query
+    try {
+        // SMTP configuration
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';  // SMTP server address
+        $mail->SMTPAuth = true;
+        $mail->Username = 'parsival143251@gmail.com';  // SMTP username
+        $mail->Password = 'hjsvffgmdwiogwtd';  // SMTP password
+        $mail->SMTPSecure = 'tls';          // Enable TLS encryption
+        $mail->Port = 587;                  // TCP port to connect to
+
+        // Email content
+        $mail->setFrom('parsival143251@gmail.com');
+        $mail->addAddress($Email);
+        $mail->isHTML(true);
+        $mail->Subject = 'Email Verification';
+        $mail->Body = 'Please click the "verify" link to verify your email: <a href="http://localhost/ipt101/verified.php?email='.$Email.'&code='.$verification_code.'">Verify</a>';
+
+        // Send email
+        $mail->send();
+
+        header("Location: sent_notice.php?message=Verification email sent. Please check your email to verify your account.");
+    } catch (Exception $e) {
+        header("Location: reg_form.php?error=Failed to send verification email. Please try again later.");
+    }
+} else {
     echo "ERROR: Hush! Sorry $sql. " . mysqli_error($conn);
 }
 

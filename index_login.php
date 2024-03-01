@@ -40,6 +40,13 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         if (mysqli_num_rows($result) === 1) {
             $row = mysqli_fetch_assoc($result); 
 
+            // To check if the email is verified
+            if ($row['verified'] == 0) {
+                // Redirect user to a verification page or display a message
+                header("Location: login_form.php?error=Please verify your email first. Check your email for the verification link");
+                exit();
+            }
+
             //To check if username and password match
             if ($row['username']  === $username && $row['password'] === $password) {
                 echo "Logged in!";
