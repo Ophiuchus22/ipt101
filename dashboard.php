@@ -15,11 +15,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="css/adminlte.min.css">
-  <style>
-    .alert-success {
-      color: green;
-    }
-  </style>
+  
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -263,7 +259,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         if (isset($_GET['success'])) {
             $success_message = urldecode($_GET['success']);
             // Display success message with green color
-            echo "<div class='alert alert-success' style='color: green;'>$success_message</div>";
+            echo "<div class='alert alert-success'>$success_message</div>";
         }
         ?>
         <div class="row justify-content-center">

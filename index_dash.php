@@ -82,7 +82,7 @@ $sql = "INSERT INTO user_profile (first_name, last_name, middle_name, email, pho
 // Execute the SQL query
 if(mysqli_query($conn, $sql)){
     // Redirect to a success page if registration is successful
-    header("Location: dashboard.php?error=Your profile has been updated successfully");
+    header("Location: dashboard.php?success=Your profile has been updated successfully");
     
 } else {
     // Redirect to an error page if there's an issue with the SQL query
