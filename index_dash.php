@@ -16,18 +16,12 @@ $contact_info = $_POST['contact_info'];
 $bio = $_POST['bio'];
 $social_media = $_POST['social_media'];
 
-
 // Regular expressions for validation
 $phone_regex = '/^\d{11}$/'; // Phone number format: 10 digits
 $email_regex = '/^\S+@\S+\.\S+$/'; // Email format: standard email regex
 $social_media_regex = '/^(https?:\/\/)?(www\.)?(facebook\.com|twitter\.com|instagram\.com|linkedin\.com|youtube\.com|snapchat\.com)\/.+$/i';
 
 $errors = array();
-
-// Function to validate if a password contains at least one letter and one digit or one of the specified symbols
-function validatePassword($password) {
-    return preg_match('/^(?=.*[A-Za-z])(?=.*[\d@#$*])[A-Za-z\d@#$*]+$/', $password);
-}
 
 // Function to validate inputs (should contain letters only)
 function validateLetters($input) {
@@ -68,10 +62,18 @@ if (!empty($social_media) && !preg_match($social_media_regex, $social_media)) {
     $errors[] = "Invalid social media link";
 }
 
+if (empty($password) || strlen($password) < 6 || !validatePassword($password)) {
+    $errors[] = "Password must be at least 6 characters long and contain at least one letter, one digit, and a symbol";
+}
+
+if (empty($username) || !validateUsername($username)) {
+    $errors[] = "Username should contain both letters and numbers, but not all numbers";
+}
+
 // Handle errors
 if (!empty($errors)) {
     $error_message = implode(", ", $errors);
-    header("Location: dashboard.php?error=$error_message");
+    header("Location: edit_profile.php?error=$error_message");
     exit();
 }
 
@@ -82,13 +84,13 @@ $sql = "INSERT INTO user_profile (first_name, last_name, middle_name, email, pho
 // Execute the SQL query
 if(mysqli_query($conn, $sql)){
     // Redirect to a success page if registration is successful
-    header("Location: dashboard.php?success=Your profile has been updated successfully");
+    header("Location: edit_profile.php?success=Your profile has been updated successfully");
     
 } else {
     // Redirect to an error page if there's an issue with the SQL query
     $error_message = mysqli_error($conn); // Get the MySQL error message
     $error_message = urlencode("Your profile could not be updated: $error_message");
-    header("Location: dashboard.php?error=$error_message");
+    header("Location: edit_profile.php?error=$error_message");
     exit();
 }
 

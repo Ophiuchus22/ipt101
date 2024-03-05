@@ -188,7 +188,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user-alt"></i>
               <p>
                 Profile
@@ -197,13 +197,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="edit_profile.php" class="nav-link">
                   <i class="fas fa-user-edit nav-icon"></i>
                   <p>Edit profile</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="edit_user_pass.php" class="nav-link">
                   <i class="fas fa-shield-alt nav-icon"></i>
                   <p>Security and login</p>
                 </a>
@@ -233,12 +233,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Edit Profile</h1>
+            <h1 class="m-0">Security and log in</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Edit Profile</li>
+              <li class="breadcrumb-item active">Security and log in</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -250,6 +250,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container-fluid">
         <?php
         // Check for error message
+        // Check for error message related to user_pass_action action
         if (isset($_GET['error'])) {
             $error_message = urldecode($_GET['error']);
             // Display error message
@@ -261,6 +262,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             // Display success message with green color
             echo "<div class='alert alert-success'>$success_message</div>";
         }
+
         ?>
         <div class="row justify-content-center">
           <!-- left column -->
@@ -269,63 +271,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="card card-primary">
               <!-- /.card-header -->
               <!-- form start -->
-                <form action="index_dash.php" method="post" enctype="multipart/form-data">
+                <form action="user_pass_action.php" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="first_name">First Name</label>
-                            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter First Name" required>
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required>
                         </div>
                         <div class="form-group">
-                            <label for="last_name">Last Name</label>
-                            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter Last Name" required>
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
                         </div>
-                        <div class="form-group">
-                            <label for="middle_name">Middle Name</label>
-                            <input type="text" class="form-control" id="middle_name" name="middle_name" placeholder="Enter Middle Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone_number">Phone Number</label>
-                            <input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="Enter Phone Number">
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Address</label>
-                            <textarea class="form-control" id="address" name="address" placeholder="Enter Address"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="date_of_birth">Date of Birth</label>
-                            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth">
-                        </div>
-                        <div class="form-group">
-                            <label for="gender">Gender</label>
-                            <select class="form-control" id="gender" name="gender">
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="profile_picture">Profile Picture</label>
-                            <input type="file" class="form-control-file" id="profile_picture" name="profile_picture">
-                        </div>
-                        <div class="form-group">
-                            <label for="contact_info">Contact Info</label>
-                            <input type="text" class="form-control" id="contact_info" name="contact_info" placeholder="Enter Contact Info">
-                        </div>
-                        <div class="form-group">
-                            <label for="bio">Bio</label>
-                            <textarea class="form-control" id="bio" name="bio" placeholder="Enter Bio"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="social_media">Social Media</label>
-                            <input type="text" class="form-control" id="social_media" name="social_media" placeholder="Enter Social Media Links">
-                        </div>
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
