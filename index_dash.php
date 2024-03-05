@@ -2,6 +2,8 @@
 // Include the database connection file
 include "db_conn.php";
 
+
+
 // Retrieve user inputs from the form
 $first_name = $_POST['first_name'];
 $last_name = $_POST['last_name'];
@@ -75,7 +77,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
     $file_type = $_FILES['profile_picture']['type'];
     
     // Specify the directory where you want to store uploaded files
-    $target_dir = "C:\\xampp\\htdocs\\ipt101\\picture";
+    $target_dir = "C:\\xampp\\htdocs\\ipt101\\picture\\";
     
     // Move the uploaded file to the specified directory
     if (move_uploaded_file($file_tmp_name, $target_dir . $file_name)) {

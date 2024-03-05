@@ -1,6 +1,6 @@
 <?php
 // Define the directory where the uploaded files will be stored
-$target_directory = "C:\\xampp\\htdocs\\ipt101\\picture";
+$target_directory = "C:\\xampp\\htdocs\\ipt101\\picture\\";
 
 // Define the path where the file will be stored in the server
 $target_file = $target_directory . basename($_FILES["profile_picture"]["name"]);

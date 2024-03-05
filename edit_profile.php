@@ -326,6 +326,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
+                    <button type="submit" class="btn btn-primary" name="verify_email">Verify Email</button>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
