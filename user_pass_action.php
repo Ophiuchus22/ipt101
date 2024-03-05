@@ -2,6 +2,9 @@
 // Include the database connection file
 include "db_conn.php";
 
+// Start session
+session_start();
+
 // Retrieve user inputs from the form
 $username = $_POST['username'];
 $password = $_POST['password'];
@@ -30,7 +33,8 @@ if (empty($username) || !validateUsername($username)) {
 // Handle errors
 if (!empty($errors)) {
     $error_message = implode(", ", $errors);
-    header("Location: edit_user_pass.php?error=$error_message");
+    $_SESSION['user_pass_error'] = $error_message; // Store error message in session variable
+    header("Location: edit_user_pass.php"); // Redirect back to edit_user_pass.php
     exit();
 }
 
@@ -49,6 +53,4 @@ if(mysqli_query($conn, $sql)){
     header("Location: edit_user_pass.php?error=$error_message");
     exit();
 }
-
-
 ?>

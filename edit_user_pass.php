@@ -249,20 +249,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <section class="content">
       <div class="container-fluid">
         <?php
-        // Check for error message
-        // Check for error message related to user_pass_action action
-        if (isset($_GET['error'])) {
-            $error_message = urldecode($_GET['error']);
-            // Display error message
-            echo "<div class='alert alert-danger'>$error_message</div>";
+        // Check if the form is submitted from edit_user_pass.php
+        // Check if the form is submitted from edit_user_pass.php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Check for error message from edit_user_pass action
+            if (isset($_SESSION['user_pass_error'])) {
+                $error_message = $_SESSION['user_pass_error'];
+                // Display error message
+                echo "<div class='alert alert-danger'>$error_message</div>";
+                // Clear the session variable to prevent displaying the error message again
+                unset($_SESSION['user_pass_error']);
+            }
         }
+
+        
         // Check for success message
         if (isset($_GET['success'])) {
             $success_message = urldecode($_GET['success']);
             // Display success message with green color
             echo "<div class='alert alert-success'>$success_message</div>";
         }
-
         ?>
         <div class="row justify-content-center">
           <!-- left column -->

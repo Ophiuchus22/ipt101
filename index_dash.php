@@ -11,7 +11,6 @@ $phone_number = $_POST['phone_number'];
 $address = $_POST['address'];
 $date_of_birth = $_POST['date_of_birth'];
 $gender = $_POST['gender'];
-$profile_picture = $_FILES['profile_picture'];
 $contact_info = $_POST['contact_info'];
 $bio = $_POST['bio'];
 $social_media = $_POST['social_media'];
@@ -62,19 +61,28 @@ if (!empty($social_media) && !preg_match($social_media_regex, $social_media)) {
     $errors[] = "Invalid social media link";
 }
 
-if (empty($password) || strlen($password) < 6 || !validatePassword($password)) {
-    $errors[] = "Password must be at least 6 characters long and contain at least one letter, one digit, and a symbol";
-}
-
-if (empty($username) || !validateUsername($username)) {
-    $errors[] = "Username should contain both letters and numbers, but not all numbers";
-}
-
 // Handle errors
 if (!empty($errors)) {
     $error_message = implode(", ", $errors);
     header("Location: edit_profile.php?error=$error_message");
     exit();
+}
+
+if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
+    $file_tmp_name = $_FILES['profile_picture']['tmp_name'];
+    $file_name = $_FILES['profile_picture']['name'];
+    $file_size = $_FILES['profile_picture']['size'];
+    $file_type = $_FILES['profile_picture']['type'];
+    
+    // Specify the directory where you want to store uploaded files
+    $target_dir = "C:\\xampp\\htdocs\\ipt101\\picture";
+    
+    // Move the uploaded file to the specified directory
+    if (move_uploaded_file($file_tmp_name, $target_dir . $file_name)) {
+        $profile_picture = $target_dir . $file_name;
+    } else {
+        $errors[] = "Failed to upload profile picture";
+    }
 }
 
 // Insert user data into the database
