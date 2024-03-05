@@ -22,12 +22,12 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
     //To check if the username is empty
     if (empty($username)) {
-        header("Location: Loginform.php?error=UserName is required");
+        header("Location: login_form.php?error=UserName is required");
         exit();
     }
     //To check if the password is empty
     else if (empty($password)){
-        header("Location: Loginform.php?error=password is required");
+        header("Location: login_form.php?error=password is required");
         exit();
     }
     //Proceed with authentication
@@ -57,7 +57,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                 $_SESSION['id'] = $row['id'];
 
                 // Redirect user to home page
-                header("Location: dashboard.php");
+                header("Location: edit_profile.php");
                 exit();
             }
             //To send the user if the credentials are incorrect

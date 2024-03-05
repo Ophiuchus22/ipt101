@@ -24,6 +24,10 @@ $Email = $_POST['Email'];
 $Status = $_POST['Status'];
 $Active = isset($_POST['Active']) ? "Online" : "Offline";
 
+function validateUsername($input) {
+    return preg_match('/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+$/', $input);
+}
+
 function validatePassword($password) {
     // Check if password contains at least one letter and one digit or one of the specified symbols
     if (!preg_match('/^(?=.*[A-Za-z])(?=.*[\d@#$*])[A-Za-z\d@#$*]+$/', $password)) {
@@ -64,6 +68,11 @@ if ($email_exists) {
 
 if (empty($password) || strlen($password) < 6 || !validatePassword($password)) {
     header("Location: reg_form.php?error=Password must be at least 6 characters long and contain at least one letter, one digit, and a symbol");
+    exit();
+}
+
+if (empty($username) || !validateUsername($username)) {
+    header("Location: reg_form.php?error=Username should contain both letters and numbers, but not all numbers");
     exit();
 }
 
