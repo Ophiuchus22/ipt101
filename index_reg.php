@@ -89,11 +89,12 @@ if (!validateLetters($first_name)) {
 }
 
 //To validate middle name
-if (!validateLetters($middle_name)) {
-    header("Location: reg_form.php?error=Middle name should contain only letters");
-    exit();
+if (!empty($middle_name)) {
+    if (!validateLetters($middle_name)) {
+        header("Location: reg_form.php?error=Middle name should contain only letters");
+        exit();
+    }
 }
-
 
 //To insert user data into the database
 $sql = "INSERT INTO user (username, password, Lastname, First_name, Middle_name, Email, Status, Active, verification_code) VALUES ('$username','$password','$last_name','$first_name','$middle_name','$Email','$Status','$Active', '$verification_code')";

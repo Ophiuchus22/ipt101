@@ -43,7 +43,7 @@ if (!validateLetters($last_name)) {
     $errors[] = "Last name should contain only letters";
 }
 
-if (!empty($middle_name) && !validateLetters($middle_name)) {
+if (!empty($middle_name)) {
     $errors[] = "Middle name should contain only letters";
 }
 
