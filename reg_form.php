@@ -142,6 +142,23 @@
             document.getElementsByName("Email")[0].value = '';
             document.getElementById("status").value = '';
         });
+        // Clear local storage when navigating away from the page without submitting the form
+        window.addEventListener('beforeunload', function(event) {
+            if (!document.querySelector("form").submitted) {
+                localStorage.removeItem("register_username");
+                localStorage.removeItem("register_password");
+                localStorage.removeItem("register_last_name");
+                localStorage.removeItem("register_first_name");
+                localStorage.removeItem("register_middle_name");
+                localStorage.removeItem("register_email");
+                localStorage.removeItem("register_status");
+            }
+        });
+        
+        // Mark the form as submitted to prevent clearing local storage when submitting
+        document.querySelector("form").addEventListener("submit", function() {
+            this.submitted = true;
+        });
     } else {
         // Local storage is not supported
         alert("Sorry, your browser does not support web storage. Your inputs will not be saved.");
