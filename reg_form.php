@@ -63,7 +63,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Middle Name" name="Middle_name" required>
+          <input type="text" class="form-control" placeholder="Middle Name" name="Middle_name">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -93,6 +93,9 @@
           <div class="col-4">
             <button type="submit" class="btn btn-primary btn-block">Register</button>
           </div>
+          <div class="col-4">
+            <button id="clearBtn" class="btn btn-secondary btn-block">Clear all</button>
+          </div>
           <!-- /.col -->
         </div>
       </form>
@@ -101,13 +104,48 @@
     <!-- /.form-box -->
   </div><!-- /.card -->
 </div>
-<!-- /.register-box -->
-
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
+<script>
+    // Check if the browser supports local storage
+    if (typeof(Storage) !== "undefined") {
+        // Retrieve values from local storage and set them as input values
+        document.getElementsByName("username")[0].value = localStorage.getItem("register_username") || '';
+        document.getElementsByName("password")[0].value = localStorage.getItem("register_password") || '';
+        document.getElementsByName("Last_name")[0].value = localStorage.getItem("register_last_name") || '';
+        document.getElementsByName("First_name")[0].value = localStorage.getItem("register_first_name") || '';
+        document.getElementsByName("Middle_name")[0].value = localStorage.getItem("register_middle_name") || '';
+        document.getElementsByName("Email")[0].value = localStorage.getItem("register_email") || '';
+        document.getElementById("status").value = localStorage.getItem("register_status") || '';
+
+        // Store input values in local storage when the form is submitted
+        document.querySelector("form").addEventListener("submit", function() {
+            localStorage.setItem("register_username", document.getElementsByName("username")[0].value);
+            localStorage.setItem("register_password", document.getElementsByName("password")[0].value);
+            localStorage.setItem("register_last_name", document.getElementsByName("Last_name")[0].value);
+            localStorage.setItem("register_first_name", document.getElementsByName("First_name")[0].value);
+            localStorage.setItem("register_middle_name", document.getElementsByName("Middle_name")[0].value);
+            localStorage.setItem("register_email", document.getElementsByName("Email")[0].value);
+            localStorage.setItem("register_status", document.getElementById("status").value);
+        });
+        // Clear input fields when the clear form button is clicked
+        document.getElementById("clearBtn").addEventListener("click", function() {
+            document.getElementsByName("username")[0].value = '';
+            document.getElementsByName("password")[0].value = '';
+            document.getElementsByName("Last_name")[0].value = '';
+            document.getElementsByName("First_name")[0].value = '';
+            document.getElementsByName("Middle_name")[0].value = '';
+            document.getElementsByName("Email")[0].value = '';
+            document.getElementById("status").value = '';
+        });
+    } else {
+        // Local storage is not supported
+        alert("Sorry, your browser does not support web storage. Your inputs will not be saved.");
+    }
+</script>
 </body>
 </html>

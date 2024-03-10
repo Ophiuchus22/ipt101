@@ -60,6 +60,9 @@
           <div class="col-4">
             <button type="submit" class="btn btn-primary btn-block">Log In</button>
           </div>
+          <div class="col-4">
+            <button id="clearFormBtn" type="button" class="btn btn-secondary btn-block">Clear</button>
+          </div>
           <!-- /.col -->
         </div>
       </form>
@@ -81,6 +84,30 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 
 <script>
+  // Check if the browser supports local storage
+  if (typeof(Storage) !== "undefined") {
+    // Retrieve values from local storage and set them as input values
+    document.getElementsByName("username")[0].value = localStorage.getItem("login_username") || '';
+    document.getElementsByName("password")[0].value = localStorage.getItem("login_password") || '';
+
+    // Store input values in local storage when the form is submitted
+    document.querySelector("form").addEventListener("submit", function() {
+      localStorage.setItem("login_username", document.getElementsByName("username")[0].value);
+      localStorage.setItem("login_password", document.getElementsByName("password")[0].value);
+    });
+    // Add event listener for "Clear form" button
+    document.getElementById("clearFormBtn").addEventListener("click", function() {
+      document.getElementsByName("username")[0].value = '';
+      document.getElementsByName("password")[0].value = '';
+    });
+  } else {
+    // Local storage is not supported
+    alert("Sorry, your browser does not support web storage. Your inputs will not be saved.");
+  }
+</script>
+
+<script>
+  // Toggle password visibility
   document.addEventListener('DOMContentLoaded', function() {
     const togglePassword = document.getElementById('togglePassword');
     const passwordInput = document.getElementById('password');
